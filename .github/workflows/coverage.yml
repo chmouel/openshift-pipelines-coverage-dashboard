@@ -175,13 +175,63 @@ jobs:
             --argjson data "$(cat _temp_coverage.json)" \
             '{run_url: $run_url, data: $data}' > coverage.json
 
-      - name: Commit and push updated coverage.json
+      - name: Generate badge markdown and dashboard
         run: |
           cp coverage.json gh-pages/coverage.json
           cd gh-pages
+
+          # Generate badge links for each repository
+          echo "# Badge Links for Repository READMEs" > BADGE_LINKS.md
+          echo "" >> BADGE_LINKS.md
+          echo "Copy the markdown below into your repository's README.md to display coverage badges:" >> BADGE_LINKS.md
+          echo "" >> BADGE_LINKS.md
+
+          # Generate dashboard README
+          echo "# Tekton Coverage Dashboard" > README.md
+          echo "" >> README.md
+          echo "Automated coverage reports for Tekton ecosystem repositories." >> README.md
+          echo "" >> README.md
+          echo "| Repository | Coverage | Status | Report |" >> README.md
+          echo "|------------|----------|--------|--------|" >> README.md
+
+          for repo_data in $(jq -c '.data[]' coverage.json); do
+            repo=$(echo "$repo_data" | jq -r '.repo')
+            coverage=$(echo "$repo_data" | jq -r '.coverage')
+            status=$(echo "$repo_data" | jq -r '.status')
+
+            # Badge URL for this repository
+            badge_url="https://img.shields.io/badge/dynamic/json?url=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/coverage.json&query=\$.data[?(@.repo=='$repo')].coverage&suffix=%25&label=coverage&color=brightgreen"
+
+            # Add to badge links file
+            echo "## $repo" >> BADGE_LINKS.md
+            echo '```markdown' >> BADGE_LINKS.md
+            echo "![Coverage]($badge_url)" >> BADGE_LINKS.md
+            echo '```' >> BADGE_LINKS.md
+            echo "" >> BADGE_LINKS.md
+
+            # Add to dashboard table
+            if [ "$status" = "ok" ]; then
+              status_emoji="✅"
+            else
+              status_emoji="❌"
+            fi
+
+            echo "| [$repo](https://github.com/$repo) | ![Coverage]($badge_url) | $status_emoji $status | [View Report](./coverage/$repo/) |" >> README.md
+          done
+
+          echo "" >> README.md
+          echo "## Usage" >> README.md
+          echo "" >> README.md
+          echo "To add coverage badges to your repository README, see [BADGE_LINKS.md](./BADGE_LINKS.md)" >> README.md
+          echo "" >> README.md
+          echo "Last updated: $(date --utc)" >> README.md
+
+      - name: Commit and push updated files
+        run: |
+          cd gh-pages
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add coverage.json coverage/
+          git add coverage.json coverage/ README.md BADGE_LINKS.md
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
