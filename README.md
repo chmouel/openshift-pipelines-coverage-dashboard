@@ -15,4 +15,4 @@ Automated coverage reports for Tekton ecosystem repositories.
 
 To add coverage badges to your repository README, see [BADGE_LINKS.md](./BADGE_LINKS.md)
 
-Last updated: Sun Dec  7 04:13:21 UTC 2025
+Last updated: Mon Dec  8 04:09:14 UTC 2025
