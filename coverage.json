@@ -1,10 +1,10 @@
 {
-  "run_url": "https://github.com/chmouel/openshift-pipelines-coverage-dashboard/actions/runs/21124945365",
+  "run_url": "https://github.com/chmouel/openshift-pipelines-coverage-dashboard/actions/runs/21159005488",
   "data": [
     {
       "repo": "openshift-pipelines/pipelines-as-code",
       "coverage": 74.5,
-      "status": "ok"
+      "status": "failed"
     },
     {
       "repo": "tektoncd/results",

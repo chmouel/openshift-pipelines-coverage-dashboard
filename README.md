@@ -4,7 +4,7 @@ Automated coverage reports for Tekton ecosystem repositories.
 
 | Repository | Coverage | Status | Report |
 |------------|----------|--------|--------|
-| [openshift-pipelines/pipelines-as-code](https://github.com/openshift-pipelines/pipelines-as-code) | ![Coverage](https://img.shields.io/badge/dynamic/json?url=https://chmouel.github.io/openshift-pipelines-coverage-dashboard/coverage.json&query=$.data[?(@.repo=='openshift-pipelines/pipelines-as-code')].coverage&suffix=%25&label=coverage&color=brightgreen) | ✅ ok | [View Report](./coverage/openshift-pipelines/pipelines-as-code/) |
+| [openshift-pipelines/pipelines-as-code](https://github.com/openshift-pipelines/pipelines-as-code) | ![Coverage](https://img.shields.io/badge/dynamic/json?url=https://chmouel.github.io/openshift-pipelines-coverage-dashboard/coverage.json&query=$.data[?(@.repo=='openshift-pipelines/pipelines-as-code')].coverage&suffix=%25&label=coverage&color=brightgreen) | ❌ failed | [View Report](./coverage/openshift-pipelines/pipelines-as-code/) |
 | [tektoncd/results](https://github.com/tektoncd/results) | ![Coverage](https://img.shields.io/badge/dynamic/json?url=https://chmouel.github.io/openshift-pipelines-coverage-dashboard/coverage.json&query=$.data[?(@.repo=='tektoncd/results')].coverage&suffix=%25&label=coverage&color=brightgreen) | ✅ ok | [View Report](./coverage/tektoncd/results/) |
 | [tektoncd/pipeline](https://github.com/tektoncd/pipeline) | ![Coverage](https://img.shields.io/badge/dynamic/json?url=https://chmouel.github.io/openshift-pipelines-coverage-dashboard/coverage.json&query=$.data[?(@.repo=='tektoncd/pipeline')].coverage&suffix=%25&label=coverage&color=brightgreen) | ✅ ok | [View Report](./coverage/tektoncd/pipeline/) |
 | [tektoncd/operator](https://github.com/tektoncd/operator) | ![Coverage](https://img.shields.io/badge/dynamic/json?url=https://chmouel.github.io/openshift-pipelines-coverage-dashboard/coverage.json&query=$.data[?(@.repo=='tektoncd/operator')].coverage&suffix=%25&label=coverage&color=brightgreen) | ❌ failed | [View Report](./coverage/tektoncd/operator/) |
@@ -15,4 +15,4 @@ Automated coverage reports for Tekton ecosystem repositories.
 
 To add coverage badges to your repository README, see [BADGE_LINKS.md](./BADGE_LINKS.md)
 
-Last updated: Mon Jan 19 04:26:30 UTC 2026
+Last updated: Tue Jan 20 04:19:53 UTC 2026
